@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dee — Virtual Assistant and Executive Administrative professional providing administrative, executive, real estate, sales, customer service, and operations support.">
+  <title>Dee | Virtual Assistant | Executive Administrative Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0b1930; --navy-2:#132844; --gold:#c8a45d; --gold-light:#e2c98e;
+      --black:#101318; --white:#fff; --cream:#f7f5f0; --muted:#687080;
+      --line:rgba(11,25,48,.12); --shadow:0 18px 50px rgba(11,25,48,.09);
+      --radius:18px; --serif:"Cormorant Garamond",Georgia,serif; --sans:"Inter",Arial,sans-serif;
+    }
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:var(--sans);color:var(--black);background:var(--white);line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1160px,92%);margin:auto}
+    .section{padding:100px 0}
+    .section-alt{background:var(--cream)}
+    .section-header{text-align:center;max-width:720px;margin:0 auto 48px}
+    .section-header h2{font:600 clamp(2.4rem,5vw,3.5rem)/1 var(--serif);color:var(--navy);margin:0 0 12px}
+    .section-sub{margin:0;color:var(--muted)}
+    .eyebrow,.hero-label{letter-spacing:.16em;text-transform:uppercase;font-size:.74rem;font-weight:700;color:var(--gold)}
+    .gold-line{width:54px;height:1px;background:var(--gold);margin:20px auto}
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .logo{font:700 2rem/1 var(--serif);color:var(--navy);letter-spacing:.02em}
+    .nav{display:flex;align-items:center;gap:25px;font-size:.83rem;font-weight:600}
+    .nav a{position:relative}
+    .nav a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--gold);transition:.25s}
+    .nav a:hover::after,.nav a:focus-visible::after{width:100%}
+    .nav-cta{background:var(--navy);color:white;padding:11px 20px;border-radius:999px;border:1px solid var(--navy);transition:.25s}
+    .nav-cta:hover,.nav-cta:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+    .menu-toggle{display:none;border:0;background:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:25px;height:2px;background:var(--navy);margin:5px}
+
+    /* Hero */
+    .hero{background:linear-gradient(135deg,#fff 0%,#faf9f6 65%,#f2eee5 100%);padding:100px 0 110px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:80px}
+    .hero-label{margin:0 0 18px}
+    .hero h1{font:600 clamp(3.2rem,6vw,5.6rem)/.95 var(--serif);letter-spacing:-.025em;color:var(--navy);margin:0 0 28px}
+    .hero-intro{font-size:1.05rem;color:#4d5664;max-width:700px;margin:0 0 32px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:13px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 23px;font-weight:700;font-size:.85rem;transition:.25s;border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--navy);color:white;border-color:var(--navy)}
+    .btn-primary:hover,.btn-primary:focus-visible{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-2px)}
+    .btn-secondary{background:transparent;color:var(--navy);border-color:rgba(11,25,48,.25)}
+    .btn-secondary:hover,.btn-secondary:focus-visible{border-color:var(--gold);color:var(--navy);transform:translateY(-2px)}
+    .hero-photo{display:flex;justify-content:center;position:relative}
+    .hero-photo::before{content:none}
+    .profile-photo{width:min(360px,90%);aspect-ratio:1/1;object-fit:cover;position:relative;z-index:1;border:0;box-shadow:none}
+
+    /* Cards */
+    .about-content{max-width:850px;margin:auto;text-align:center}
+    .about-content p{color:#4d5664;margin:0 auto 18px}
+    .about-highlights{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;padding:0;margin:30px 0 0}
+    .about-highlights li{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 14px;font-size:.8rem;font-weight:600;color:var(--navy)}
+    .services-grid,.skills-grid,.tools-grid,.portfolio-grid,.why-grid,.exp-cards{display:grid;gap:18px}
+    .services-grid{grid-template-columns:repeat(3,1fr)}
+    .service-card,.skill-group,.tool-card,.portfolio-card,.why-item,.exp-card{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:.25s}
+    .service-card:hover,.skill-group:hover,.tool-card:hover,.portfolio-card:hover,.why-item:hover,.exp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(200,164,93,.5)}
+    .service-icon{font-size:1.5rem;color:var(--gold);margin-bottom:12px}
+    h3{font-size:1rem;color:var(--navy);margin:0 0 8px}
+    .service-card p,.portfolio-card p,.why-item p,.exp-overview{margin:0;color:var(--muted);font-size:.88rem}
+    .services-note,.skills-note,.portfolio-note{text-align:center;color:var(--muted);font-size:.82rem;margin:30px auto 0;max-width:800px}
+
+    /* Skills */
+    .skills-grid{grid-template-columns:repeat(5,1fr)}
+    .skill-group{padding:24px}
+    .skill-group h3{font:600 1.5rem/1.1 var(--serif);margin-bottom:18px}
+    .skill-group ul{padding:0;margin:0;list-style:none}
+    .skill-group li{font-size:.8rem;color:#586170;padding:7px 0;border-bottom:1px solid var(--line)}
+    .skill-group li:last-child{border-bottom:0}
+
+    /* Tools */
+    .tools-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .tool-card{display:flex;align-items:center;gap:13px;padding:18px}
+    .tool-icon{width:40px;height:40px;border-radius:12px;background:var(--navy);color:var(--gold-light);display:grid;place-items:center;font-weight:800;font-size:.75rem;flex:0 0 auto}
+    .tool-card span:last-child{font-size:.82rem;font-weight:600;color:var(--navy)}
+    .tool-category{grid-column:1/-1;margin-top:22px}
+    .tool-category h3{font:600 1.7rem/1 var(--serif);margin:0 0 15px}
+
+    /* Portfolio */
+    .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+    .portfolio-card-featured{grid-column:span 2;padding:0;overflow:hidden}
+    .portfolio-image{background:#e9e6df}
+    .portfolio-image img{width:100%;height:280px;object-fit:cover}
+    .portfolio-body{padding:28px}
+    .portfolio-tag{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:700;margin-bottom:8px}
+
+    /* Process */
+    .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .process-step{text-align:center;padding:10px}
+    .step-num{display:grid;place-items:center;width:42px;height:42px;margin:0 auto 15px;border:1px solid var(--gold);border-radius:50%;color:var(--navy);font-weight:700}
+    .process-step p{font-size:.82rem;color:var(--muted);margin:0}
+
+    /* Why */
+    .why-grid{grid-template-columns:repeat(4,1fr)}
+    .why-item{padding:24px}
+
+    /* Experience */
+    .exp-intro{max-width:820px;margin:0 auto 36px;text-align:center;color:var(--muted)}
+    .exp-cards{grid-template-columns:repeat(2,1fr)}
+    .exp-card{border-left:3px solid var(--gold)}
+    .exp-card h3{font:600 1.55rem/1.1 var(--serif)}
+    .exp-footer-note{margin:28px auto 0;text-align:center;color:var(--muted);font-size:.82rem}
+    .exp-footer-note p{margin:4px}
+
+    /* Contact */
+    .contact-section{position:relative;color:white;background-image:linear-gradient(rgba(7,18,34,.9),rgba(7,18,34,.94)),url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=85");background-size:cover;background-position:center}
+    .contact-section .section-header h2{color:white}
+    .contact-section .section-sub{color:#d4d9e0}
+    .contact-content{text-align:center;max-width:850px;margin:auto}
+    .contact-intro{color:#d4d9e0;max-width:720px;margin:0 auto 30px}
+    .contact-icons{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:28px 0}
+    .contact-icon{width:54px;height:54px;border:1px solid rgba(226,201,142,.55);border-radius:50%;display:grid;place-items:center;color:var(--gold-light);transition:.25s;position:relative}
+    .contact-icon:hover,.contact-icon:focus-visible{background:var(--gold);color:var(--navy);transform:translateY(-3px)}
+    .contact-icon svg{width:23px;height:23px;fill:currentColor}
+    .contact-icon[data-tooltip]::after{content:attr(data-tooltip);position:absolute;bottom:-38px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#050d18;color:white;border:1px solid rgba(226,201,142,.25);padding:5px 9px;border-radius:6px;font-size:.68rem;opacity:0;pointer-events:none;transition:.2s}
+    .contact-icon:hover::after,.contact-icon:focus-visible::after{opacity:1}
+    .contact-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:36px}
+    .contact-section .btn-primary{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+    .contact-section .btn-primary:hover{background:white;border-color:white}
+    .contact-section .btn-secondary{border-color:rgba(255,255,255,.35);color:white}
+    .contact-section .btn-secondary:hover{border-color:var(--gold);color:var(--gold-light)}
+
+    /* Footer */
+    .footer{background:#070f1d;color:#aeb6c2;padding:28px 0;font-size:.76rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer p{margin:0}
+
+    .whatsapp-float{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border-radius:50%;background:#0b1930;color:var(--gold-light);display:grid;place-items:center;z-index:90;border:1px solid var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.18);transition:.25s}
+    .whatsapp-float:hover{transform:translateY(-3px);background:var(--gold);color:var(--navy)}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+    @media(max-width:1050px){
+      .nav{gap:14px}.services-grid{grid-template-columns:repeat(2,1fr)}
+      .skills-grid{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .why-grid{grid-template-columns:repeat(2,1fr)}.process-steps{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:800px){
+      .section{padding:75px 0}.header-inner{min-height:68px}
+      .menu-toggle{display:block}.nav{display:none;position:absolute;top:68px;left:0;right:0;background:white;padding:18px 4%;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:5px;box-shadow:var(--shadow)}
+      .nav.open{display:flex}.nav a{padding:11px}.nav-cta{text-align:center;margin-top:5px}
+      .hero{padding:72px 0}.hero-grid{grid-template-columns:1fr;gap:45px}.hero-content{text-align:center}.hero-actions{justify-content:center}.hero-photo{order:-1}
+      .hero-photo::before{content:none}.profile-photo{width:250px}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .process-steps{grid-template-columns:1fr 1fr}.portfolio-grid{grid-template-columns:1fr}.portfolio-card-featured{grid-column:auto}
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+    @media(max-width:560px){
+      .section{padding:62px 0}.hero h1{font-size:3.15rem}.services-grid,.skills-grid,.exp-cards,.why-grid,.process-steps{grid-template-columns:1fr}.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .tool-category{margin-top:10px}.portfolio-image img{height:220px}.contact-icons{gap:10px}
+      .contact-icon{width:50px;height:50px}.whatsapp-float{right:16px;bottom:16px}
+    }
+  
+/* Sample Work gallery */
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.sample-card {
+  overflow: hidden;
+  border: 1px solid rgba(13, 38, 70, .12);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 35px rgba(13, 38, 70, .08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.sample-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(13, 38, 70, .14);
+}
+.sample-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.sample-card-content {
+  padding: 1.25rem 1.35rem 1.4rem;
+}
+.sample-tag {
+  display: inline-block;
+  margin-bottom: .45rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.sample-card h3 {
+  margin: 0 0 .45rem;
+}
+.sample-card p {
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .sample-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Final tools and profile-photo refinements */
+.tool-card { min-width: 0; }
+.tool-card span:last-child { min-width: 0; overflow-wrap: anywhere; line-height: 1.25; }
+.profile-photo { border: 0 !important; box-shadow: none !important; }
+.hero-photo::before { display: none !important; }
+
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="#home" class="logo" aria-label="Dee home">Dee</a>
+    <nav class="nav" id="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#tools">Tools</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="nav-cta">Hire Me</a>
+    </nav>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <p class="hero-label">Virtual Assistant · Executive Administrative Support</p>
+      <h1>Reliable support that keeps your business moving.</h1>
+      <p class="hero-intro">I’m Dee, a versatile and detail-oriented Virtual Assistant with experience in executive admin, real estate VA support, customer service, sales, operations, and online tutoring. I help keep calendars, inboxes, documents, tasks, and day-to-day workflows organized.</p>
+      <div class="hero-actions">
+        <a href="mailto:deeponce95@gmail.com?subject=Virtual%20Assistant%20Inquiry" class="btn btn-primary">Hire Me</a>
+        <a href="#portfolio" class="btn btn-secondary">View Sample Work</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/profile.jpg" alt="Dee — Virtual Assistant" class="profile-photo" width="360" height="360">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">About</p><h2>Professional, organized, adaptable.</h2><div class="gold-line"></div></div>
+    <div class="about-content">
+      <p>I help busy founders, freelancers, and remote teams stay organized by taking care of the administrative work that slows them down — inboxes, calendars, documents, data entry, and research.</p>
+      <p>With a background in executive admin, real estate VA support, customer service, and social media, I’m used to clear communication, accurate follow-through, and keeping things running smoothly.</p>
+      <p>I work well asynchronously, adapt quickly to new tools and processes, and treat every task with the same care whether it’s a one-off project or ongoing support.</p>
+      <ul class="about-highlights">
+        <li>Clear, timely communication</li><li>Organized and detail-oriented</li><li>Confidential and deadline-focused</li><li>Fast learner with remote tools</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Capabilities</p><h2>Skills</h2><div class="gold-line"></div><p class="section-sub">A broad support skill set across administration, clients, sales, operations, and communication.</p></div>
+    <div class="skills-grid">
+      <div class="skill-group"><h3>Administrative & Executive Support</h3><ul><li>Executive Administrative Support</li><li>Calendar & Schedule Management</li><li>Email Management</li><li>Data Entry</li><li>Document Management</li><li>File Organization</li><li>Appointment Scheduling</li><li>Research & Reporting</li></ul></div>
+      <div class="skill-group"><h3>Customer & Client Support</h3><ul><li>Customer Service</li><li>Email & Chat Support</li><li>Lead Follow-Up</li><li>Client Communication</li><li>Appointment Setting</li><li>Inbound & Outbound Calls</li></ul></div>
+      <div class="skill-group"><h3>Real Estate & Sales Support</h3><ul><li>Real Estate Virtual Assistance</li><li>Lead Management</li><li>Lead Qualification</li><li>Inside Sales / ISA</li><li>CRM Management</li><li>Property Research</li><li>Follow-Up & Pipeline Management</li></ul></div>
+      <div class="skill-group"><h3>Operations & Team Support</h3><ul><li>Operations Coordination</li><li>Team Management</li><li>Virtual Assistant Management</li><li>Workflow Coordination</li><li>Task Delegation</li><li>Quality Control</li><li>Process Improvement</li></ul></div>
+      <div class="skill-group"><h3>Education & Communication</h3><ul><li>ESL Tutoring</li><li>Online Private Tutoring</li><li>English Communication</li><li>Filipino Language Tutoring</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Technology</p>
+      <h2>Tools I Have Used</h2>
+      <div class="gold-line"></div>
+      <p class="section-sub">A complete overview of the platforms and systems I have used across communication, administration, real estate, lead generation, CRM, calling, and marketing.</p>
+    </div>
+
+    <div class="tool-category">
+      <h3>Communication</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">G</span><span>Gmail</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GC</span><span>Google Chat</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">S</span><span>Slack</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">Z</span><span>Zoom</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">T</span><span>Microsoft Teams</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">WA</span><span>WhatsApp</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">M</span><span>Messenger</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">RC</span><span>RingCentral</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Productivity &amp; Office</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GW</span><span>Google Workspace</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GD</span><span>Google Docs</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GS</span><span>Google Sheets</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GD</span><span>Google Drive</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">W</span><span>Microsoft Word</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">X</span><span>Microsoft Excel</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">P</span><span>Microsoft PowerPoint</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Project &amp; Task Management</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">TR</span><span>Trello</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">AS</span><span>Asana</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">CL</span><span>ClickUp</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">AT</span><span>Airtable</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Real Estate &amp; Lead Generation Platforms</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">FS</span><span>FreedomSoft</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">PB</span><span>Pebble</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">BT</span><span>BoldTrail</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">LI</span><span>Land id</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">MLS</span><span>MLS — Multiple Listing Service</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Lead Generation &amp; Prospecting</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">A</span><span>Apollo</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">SA</span><span>Seamless.AI</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">RR</span><span>RocketReach</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">CO</span><span>ContactOut</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">K</span><span>Kaspr</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">BL</span><span>BatchLeads</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>CRM &amp; Automation</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GH</span><span>GoHighLevel</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">SF</span><span>Salesforce</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Dialers &amp; Outbound Calling</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">BD</span><span>BatchDialer</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">MD</span><span>Mojo Dialer</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">RM</span><span>ReadyMode</span></div>
+      </div>
+    </div>
+
+    <div class="tool-category">
+      <h3>Marketing &amp; Online Platforms</h3>
+      <div class="tools-grid">
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">f</span><span>Facebook</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">FB</span><span>Facebook Business</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">C</span><span>Canva</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">MC</span><span>Mailchimp</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">IG</span><span>Instagram</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">KJ</span><span>Kijiji</span></div>
+        <div class="tool-card"><span class="tool-icon" aria-hidden="true">GB</span><span>Google Business Profile</span></div>
+      </div>
+    </div>
+
+    <p class="skills-note">Tools are organized by primary use to keep the portfolio clear and avoid duplicate listings across categories.</p>
+  </div>
+</section>
+
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">What I Provide</p><h2>Services</h2><div class="gold-line"></div><p class="section-sub">Practical support designed around your priorities and workflow.</p></div>
+    <div class="services-grid">
+      <article class="service-card"><div class="service-icon">01</div><h3>Executive & Administrative Support</h3><p>Administrative assistance, calendar management, email management, scheduling, research, and documentation.</p></article>
+      <article class="service-card"><div class="service-icon">02</div><h3>Virtual Assistance</h3><p>Day-to-day business support, data entry, online research, task coordination, and communication support.</p></article>
+      <article class="service-card"><div class="service-icon">03</div><h3>Real Estate Support</h3><p>Lead management, lead follow-up, property research, appointment setting, and CRM support.</p></article>
+      <article class="service-card"><div class="service-icon">04</div><h3>Customer & Sales Support</h3><p>Customer service, lead qualification, inside sales support, appointment setting, and client communication.</p></article>
+      <article class="service-card"><div class="service-icon">05</div><h3>Operations Support</h3><p>Team coordination, task management, workflow support, and administrative operations.</p></article>
+      <article class="service-card"><div class="service-icon">06</div><h3>Document & Workflow Support</h3><p>File organization, document preparation, spreadsheet upkeep, research, and structured task handling.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Portfolio</p><h2>Sample Work</h2><div class="gold-line"></div><p class="section-sub">Practice projects that show how I approach real VA tasks.</p></div>
+    <div class="portfolio-grid">
+
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Data Entry Sample</h3><p>Accurate entry of records into a structured spreadsheet with consistent formatting and validation checks.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Spreadsheet / Excel Sample</h3><p>Organized data tables, basic formulas, and clean layout for easy review and reporting.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Email Management Workflow</h3><p>Inbox triage system: labels, prioritization rules, and draft response templates for faster handling.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Calendar Management Sample</h3><p>Coordinated multi-timezone scheduling, buffer times, and clear event details for efficient meetings.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Internet Research Sample</h3><p>Focused research brief with sources, key findings, and a concise summary for decision-making.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>Document Formatting Sample</h3><p>Professionally formatted reports and letters with consistent styles, headings, and spacing.</p></article>
+      <article class="portfolio-card"><div class="portfolio-tag">Sample Project</div><h3>File Organization System</h3><p>Logical folder structure and naming conventions for easy retrieval across Google Drive or shared drives.</p></article>
+    </div>
+    <p class="portfolio-note">These are sample and practice projects — not client work. I’m happy to complete a short paid test task or share more detailed examples so you can evaluate fit before hiring.</p>
+  </div>
+</section>
+
+<section class="section section-alt" id="process">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Workflow</p><h2>How I Work</h2><div class="gold-line"></div><p class="section-sub">Clear process clients can count on.</p></div>
+    <div class="process-steps">
+      <div class="process-step"><span class="step-num">1</span><h3>Clarify</h3><p>I confirm goals, priorities, deadlines, and communication preferences.</p></div>
+      <div class="process-step"><span class="step-num">2</span><h3>Plan</h3><p>I break work into clear steps and organize tools and files as needed.</p></div>
+      <div class="process-step"><span class="step-num">3</span><h3>Execute</h3><p>I complete the work carefully, checking for accuracy before sharing.</p></div>
+      <div class="process-step"><span class="step-num">4</span><h3>Update</h3><p>You get short, regular status updates so nothing is left unclear.</p></div>
+      <div class="process-step"><span class="step-num">5</span><h3>Deliver</h3><p>I deliver on time and revise based on your feedback until it’s right.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why-me">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Working Style</p><h2>Why Work With Me</h2><div class="gold-line"></div><p class="section-sub">The qualities I bring to day-to-day support.</p></div>
+    <div class="why-grid">
+      <div class="why-item"><h3>Reliable</h3><p>I follow through on commitments and show up consistently for every task.</p></div>
+      <div class="why-item"><h3>Organized</h3><p>Tasks, files, and schedules stay structured and easy to review.</p></div>
+      <div class="why-item"><h3>Detail-Oriented</h3><p>I double-check work so small errors don’t become bigger problems.</p></div>
+      <div class="why-item"><h3>Fast Learner</h3><p>I pick up new tools and client processes quickly.</p></div>
+      <div class="why-item"><h3>Clear Communicator</h3><p>Short, professional updates keep work and expectations clear.</p></div>
+      <div class="why-item"><h3>Adaptable</h3><p>I adjust to changing priorities while keeping work organized.</p></div>
+      <div class="why-item"><h3>Confidential</h3><p>Sensitive information is handled carefully and professionally.</p></div>
+      <div class="why-item"><h3>On-Time Delivery</h3><p>I plan my work so deadlines are met and deliverables stay on track.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="experience">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Background</p><h2>Professional Experience</h2><div class="gold-line"></div><p class="section-sub">A concise overview of my professional background.</p></div>
+    <p class="exp-intro">My background includes virtual assistance, executive support, operations, sales, customer service, and online education. This section provides a quick recruiter-friendly overview.</p>
+    <div class="exp-cards">
+      <article class="exp-card"><h3>Virtual Assistance</h3><p class="exp-overview">Remote administrative support including email management, calendar coordination, document organization, and day-to-day task handling.</p></article>
+      <article class="exp-card"><h3>Executive & Administrative Support</h3><p class="exp-overview">Executive-level admin support, scheduling, correspondence, and operational coordination to keep leadership and teams organized.</p></article>
+      <article class="exp-card"><h3>Operations & Team Coordination</h3><p class="exp-overview">Support for daily operations and team workflows, aligning tasks, communication, and priorities across remote work.</p></article>
+      <article class="exp-card"><h3>Real Estate Virtual Assistance</h3><p class="exp-overview">Administrative support for real estate professionals, including client coordination, scheduling, and organized assistance with listings and transactions.</p></article>
+      <article class="exp-card"><h3>Inside Sales & Lead Support</h3><p class="exp-overview">Sales pipeline support through lead follow-up, client communication, and organized tracking.</p></article>
+      <article class="exp-card"><h3>Customer Service</h3><p class="exp-overview">Professional client support through clear communication, problem-solving, and consistent service.</p></article>
+      <article class="exp-card"><h3>ESL & Online Tutoring</h3><p class="exp-overview">Online English instruction with structured lessons, clear teaching, and patient communication.</p></article>
+    </div>
+    <div class="exp-footer-note"><p><strong>Education:</strong> BSEDE — 2015</p><p>For detailed work history and references, please request my full resume.</p></div>
+  </div>
+</section>
+
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Contact</p><h2>Let’s Work Together</h2><div class="gold-line"></div><p class="section-sub">Available for ongoing support or project-based work.</p></div>
+    <div class="contact-content">
+      <p class="contact-intro">Looking for a reliable Virtual Assistant for email management, calendar scheduling, admin tasks, research, real estate support, or operations? Reach out with a short description of what you need.</p>
+
+      <div class="contact-icons" aria-label="Professional contact links">
+        <a class="contact-icon" data-tooltip="Email Me" aria-label="Email Dee" href="mailto:deeponce95@gmail.com?subject=Virtual%20Assistant%20Inquiry">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.5A2.5 2.5 0 0 1 5 3h14a2.5 2.5 0 0 1 2.5 2.5v13A2.5 2.5 0 0 1 19 21H5a2.5 2.5 0 0 1-2.5-2.5v-13Zm2.2.3 7.3 5.5 7.3-5.5H4.7Zm14.6 2.2-6.4 4.8a1.5 1.5 0 0 1-1.8 0L4.7 8v10.5c0 .17.13.3.3.3h14c.17 0 .3-.13.3-.3V8Z"/></svg>
+        </a>
+        <a class="contact-icon" data-tooltip="WhatsApp" aria-label="Contact Dee on WhatsApp" href="https://wa.me/639569377812?text=Hi%20Dee%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20Virtual%20Assistant%20support." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l5.3-1.2A9.5 9.5 0 1 0 12 2Zm0 17a7.5 7.5 0 0 1-3.8-1l-.3-.2-3.1.7.7-3-.2-.3A7.5 7.5 0 1 1 12 19Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5.1a6.1 6.1 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.5c.1-.1.1-.3.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.1-.2-.3-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.6 4 3.6.6.3 1.1.4 1.5.5.6.2 1.1.1 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.2-.5-.3Z"/></svg>
+        </a>
+        <a class="contact-icon" data-tooltip="LinkedIn" aria-label="Open Dee's LinkedIn profile" href="https://www.linkedin.com/in/dzey-p-680904224/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.6h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.5 2.5 4.5 5.8V21h-4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9V9Z"/></svg>
+        </a>
+        <a class="contact-icon" data-tooltip="Facebook" aria-label="Open Dee's Facebook profile" href="https://www.facebook.com/senyorita1995/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5c-.5-.1-1.6-.2-3-.2-3 0-5 1.8-5 5.1V12H6v4h3v8h4v-8h3.4l.6-4H13V9.8c0-1.2.3-1.8 1-1.8Z"/></svg>
+        </a>
+        <a class="contact-icon" data-tooltip="Upwork" aria-label="Open Dee's Upwork profile" href="https://www.upwork.com/freelancers/~016bc7bc06edae29a2?mp_source=share" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.6 7.2c-1.8 0-3.3 1-4.2 2.6l-.8 1.5c-.7-1.4-1.2-2.9-1.5-4.5H9.7c.3 2.1.9 4 1.8 5.8-1.1 1.2-2.2 1.8-3.3 1.8-1.2 0-2.1-.9-2.1-2.2 0-1.5 1-2.6 2.4-2.6.5 0 1 .1 1.5.4V6.8c-.5-.2-1-.3-1.6-.3C5.5 6.5 3 9 3 12.4 3 15.5 5.1 18 8.1 18c2.1 0 3.9-1.1 5.2-3.1l.7-1.1c1.1 1.8 2.7 3.1 4.6 3.1 2.7 0 4.4-2.1 4.4-4.8 0-2.7-1.8-4.9-4.4-4.9Zm0 7c-1 0-1.8-.7-2.5-1.8l1.1-2c.4-.8.8-1.2 1.4-1.2 1 0 1.7 1 1.7 2.4 0 1.5-.6 2.6-1.7 2.6Z"/></svg>
+        </a>
+        <a class="contact-icon" data-tooltip="Location" aria-label="View Dee's location" href="https://www.google.com/maps/search/?api=1&query=Roxas+City%2C+Capiz%2C+Philippines" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.7A2.7 2.7 0 1 1 12 6a2.7 2.7 0 0 1 0 5.7Z"/></svg>
+        </a>
+      </div>
+
+      <div class="contact-actions">
+        <a href="mailto:deeponce95@gmail.com?subject=Virtual%20Assistant%20Inquiry" class="btn btn-primary">Hire Me</a>
+        <a href="https://wa.me/639569377812?text=Hi%20Dee%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20Virtual%20Assistant%20support." target="_blank" rel="noopener" class="btn btn-secondary">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> Dee. Virtual Assistant · Executive Administrative Support.</p>
+    <p>Available for remote administrative support.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/639569377812?text=Hi%20Dee%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20Virtual%20Assistant%20support." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Dee on WhatsApp">
+  <svg viewBox="0 0 32 32" width="27" height="27" aria-hidden="true"><path fill="currentColor" d="M16.1 3C9.3 3 3.8 8.5 3.8 15.3c0 2.2.6 4.3 1.7 6.2L3.5 29l7.7-2c1.8 1 3.8 1.5 5.9 1.5 6.8 0 12.3-5.5 12.3-12.3S22.9 3 16.1 3zm0 22.4c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.6 1.2 1.2-4.4-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10s10 4.5 10 10-4.4 10.1-9.4 10.1zm5.5-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6 0-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2 3.1 4.9 4.3 1.7.7 2.4.8 3.3.7.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<script>
+  const menu = document.getElementById('nav');
+  const toggle = document.getElementById('menu-toggle');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('.nav a').forEach(link => link.addEventListener('click', () => {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+  }));
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Prevent placeholder social icons from looking like broken links.
+  document.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>
