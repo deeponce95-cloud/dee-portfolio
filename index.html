@@ -54,8 +54,8 @@
     .btn-secondary{background:transparent;color:var(--navy);border-color:rgba(11,25,48,.25)}
     .btn-secondary:hover,.btn-secondary:focus-visible{border-color:var(--gold);color:var(--navy);transform:translateY(-2px)}
     .hero-photo{display:flex;justify-content:center;position:relative}
-    .hero-photo::before{content:none}
-    .profile-photo{width:min(360px,90%);aspect-ratio:1/1;object-fit:cover;position:relative;z-index:1;border:0;box-shadow:none}
+    .hero-photo::before{content:"";position:absolute;width:82%;height:82%;border:1px solid var(--gold);right:0;top:10%;z-index:0}
+    .profile-photo{width:min(360px,90%);height:auto;object-fit:contain;object-position:center top;position:relative;z-index:1;border:0;box-shadow:none}
 
     /* Cards */
     .about-content{max-width:850px;margin:auto;text-align:center}
@@ -80,7 +80,7 @@
     .skill-group li:last-child{border-bottom:0}
 
     /* Tools */
-    .tools-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .tools-grid{grid-template-columns:repeat(4,1fr)}
     .tool-card{display:flex;align-items:center;gap:13px;padding:18px}
     .tool-icon{width:40px;height:40px;border-radius:12px;background:var(--navy);color:var(--gold-light);display:grid;place-items:center;font-weight:800;font-size:.75rem;flex:0 0 auto}
     .tool-card span:last-child{font-size:.82rem;font-weight:600;color:var(--navy)}
@@ -142,7 +142,7 @@
 
     @media(max-width:1050px){
       .nav{gap:14px}.services-grid{grid-template-columns:repeat(2,1fr)}
-      .skills-grid{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .skills-grid{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(3,1fr)}
       .why-grid{grid-template-columns:repeat(2,1fr)}.process-steps{grid-template-columns:repeat(3,1fr)}
     }
     @media(max-width:800px){
@@ -150,83 +150,59 @@
       .menu-toggle{display:block}.nav{display:none;position:absolute;top:68px;left:0;right:0;background:white;padding:18px 4%;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:5px;box-shadow:var(--shadow)}
       .nav.open{display:flex}.nav a{padding:11px}.nav-cta{text-align:center;margin-top:5px}
       .hero{padding:72px 0}.hero-grid{grid-template-columns:1fr;gap:45px}.hero-content{text-align:center}.hero-actions{justify-content:center}.hero-photo{order:-1}
-      .hero-photo::before{content:none}.profile-photo{width:250px}
-      .skills-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .hero-photo::before{content:none}.profile-photo{width:min(320px,90%);height:auto;object-fit:contain;border:0;box-shadow:none}
+      .skills-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}
       .process-steps{grid-template-columns:1fr 1fr}.portfolio-grid{grid-template-columns:1fr}.portfolio-card-featured{grid-column:auto}
       .footer-inner{flex-direction:column;text-align:center}
     }
     @media(max-width:560px){
-      .section{padding:62px 0}.hero h1{font-size:3.15rem}.services-grid,.skills-grid,.exp-cards,.why-grid,.process-steps{grid-template-columns:1fr}.tools-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .section{padding:62px 0}.hero h1{font-size:3.15rem}.services-grid,.skills-grid,.tools-grid,.exp-cards,.why-grid,.process-steps{grid-template-columns:1fr}
       .tool-category{margin-top:10px}.portfolio-image img{height:220px}.contact-icons{gap:10px}
       .contact-icon{width:50px;height:50px}.whatsapp-float{right:16px;bottom:16px}
     }
   
-/* Sample Work gallery */
-.sample-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+/* Final profile + sample-work presentation */
+.profile-photo{
+  width:min(360px,90%) !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  object-fit:contain !important;
+  object-position:center top !important;
+  border:0 !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
 }
-.sample-card {
-  overflow: hidden;
-  border: 1px solid rgba(13, 38, 70, .12);
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 12px 35px rgba(13, 38, 70, .08);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.sample-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(13, 38, 70, .14);
-}
-.sample-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-.sample-card-content {
-  padding: 1.25rem 1.35rem 1.4rem;
-}
-.sample-tag {
-  display: inline-block;
-  margin-bottom: .45rem;
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.sample-card h3 {
-  margin: 0 0 .45rem;
-}
-.sample-card p {
-  margin: 0;
-}
-@media (max-width: 760px) {
-  .sample-grid {
-    grid-template-columns: 1fr;
-  }
-}
+.hero-photo{overflow:visible !important}
+.hero-photo::before{display:none !important;content:none !important}
 
-
-/* Final tools and profile-photo refinements */
-.tool-card { min-width: 0; }
-.tool-card span:last-child { min-width: 0; overflow-wrap: anywhere; line-height: 1.25; }
-.profile-photo { border: 0 !important; box-shadow: none !important; }
-.hero-photo::before { display: none !important; }
-
-
-/* Sample Work gallery */
-.sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
-.sample-card{overflow:hidden;border:1px solid rgba(13,38,70,.12);border-radius:18px;background:#fff;box-shadow:0 12px 35px rgba(13,38,70,.08);transition:transform .25s ease,box-shadow .25s ease}
-.sample-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(13,38,70,.14)}
-.sample-card img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
-.sample-card-content{padding:1.25rem 1.35rem 1.4rem}
-.sample-tag{display:inline-block;margin-bottom:.45rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.sample-card h3{margin:0 0 .45rem}
-.sample-card p{margin:0}
-@media (max-width:760px){.sample-grid{grid-template-columns:1fr}}
+.sample-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.5rem;
+}
+.sample-card{
+  overflow:hidden;
+  border:1px solid rgba(13,38,70,.12);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 12px 35px rgba(13,38,70,.08);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.sample-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 45px rgba(13,38,70,.14);
+}
+.sample-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/10;
+  object-fit:cover;
+}
+.sample-card-content{padding:1.2rem 1.3rem 1.35rem}
+.sample-card-content h3{margin:.2rem 0 .45rem}
+.sample-card-content p{margin:0}
+@media(max-width:760px){.sample-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -249,45 +225,183 @@
 </header>
 
 <main>
-<section class="section" id="sample-work">
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <p class="hero-label">Virtual Assistant · Executive Administrative Support</p>
+      <h1>Reliable support that keeps your business moving.</h1>
+      <p class="hero-intro">I’m Dee, a versatile and detail-oriented Virtual Assistant with experience in executive admin, real estate VA support, customer service, sales, operations, and online tutoring. I help keep calendars, inboxes, documents, tasks, and day-to-day workflows organized.</p>
+      <div class="hero-actions">
+        <a href="mailto:deeponce95@gmail.com?subject=Virtual%20Assistant%20Inquiry" class="btn btn-primary">Hire Me</a>
+        <a href="#portfolio" class="btn btn-secondary">View Sample Work</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/profile.jpg" alt="Dee — Virtual Assistant" class="profile-photo" width="360" height="360">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">About</p><h2>Professional, organized, adaptable.</h2><div class="gold-line"></div></div>
+    <div class="about-content">
+      <p>I help busy founders, freelancers, and remote teams stay organized by taking care of the administrative work that slows them down — inboxes, calendars, documents, data entry, and research.</p>
+      <p>With a background in executive admin, real estate VA support, customer service, and social media, I’m used to clear communication, accurate follow-through, and keeping things running smoothly.</p>
+      <p>I work well asynchronously, adapt quickly to new tools and processes, and treat every task with the same care whether it’s a one-off project or ongoing support.</p>
+      <ul class="about-highlights">
+        <li>Clear, timely communication</li><li>Organized and detail-oriented</li><li>Confidential and deadline-focused</li><li>Fast learner with remote tools</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">Capabilities</p><h2>Skills</h2><div class="gold-line"></div><p class="section-sub">A broad support skill set across administration, clients, sales, operations, and communication.</p></div>
+    <div class="skills-grid">
+      <div class="skill-group"><h3>Administrative & Executive Support</h3><ul><li>Executive Administrative Support</li><li>Calendar & Schedule Management</li><li>Email Management</li><li>Data Entry</li><li>Document Management</li><li>File Organization</li><li>Appointment Scheduling</li><li>Research & Reporting</li></ul></div>
+      <div class="skill-group"><h3>Customer & Client Support</h3><ul><li>Customer Service</li><li>Email & Chat Support</li><li>Lead Follow-Up</li><li>Client Communication</li><li>Appointment Setting</li><li>Inbound & Outbound Calls</li></ul></div>
+      <div class="skill-group"><h3>Real Estate & Sales Support</h3><ul><li>Real Estate Virtual Assistance</li><li>Lead Management</li><li>Lead Qualification</li><li>Inside Sales / ISA</li><li>CRM Management</li><li>Property Research</li><li>Follow-Up & Pipeline Management</li></ul></div>
+      <div class="skill-group"><h3>Operations & Team Support</h3><ul><li>Operations Coordination</li><li>Team Management</li><li>Virtual Assistant Management</li><li>Workflow Coordination</li><li>Task Delegation</li><li>Quality Control</li><li>Process Improvement</li></ul></div>
+      <div class="skill-group"><h3>Education & Communication</h3><ul><li>ESL Tutoring</li><li>Online Private Tutoring</li><li>English Communication</li><li>Filipino Language Tutoring</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
   <div class="container">
     <div class="section-header">
-      <p class="eyebrow">Portfolio Samples</p>
+      <p class="eyebrow">Technology</p>
+      <h2>Tools I Have Used</h2>
+      <div class="gold-line"></div>
+      <p class="section-sub">A complete overview of the communication, productivity, real estate, lead generation, CRM, calling, and marketing platforms included in my experience.</p>
+    </div>
+
+    <div class="tool-category"><h3>Communication</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">G</span><span>Gmail</span></div>
+      <div class="tool-card"><span class="tool-icon">GC</span><span>Google Chat</span></div>
+      <div class="tool-card"><span class="tool-icon">S</span><span>Slack</span></div>
+      <div class="tool-card"><span class="tool-icon">Z</span><span>Zoom</span></div>
+      <div class="tool-card"><span class="tool-icon">T</span><span>Microsoft Teams</span></div>
+      <div class="tool-card"><span class="tool-icon">WA</span><span>WhatsApp</span></div>
+      <div class="tool-card"><span class="tool-icon">M</span><span>Messenger</span></div>
+      <div class="tool-card"><span class="tool-icon">RC</span><span>RingCentral</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Productivity &amp; Office</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">GW</span><span>Google Workspace</span></div>
+      <div class="tool-card"><span class="tool-icon">GD</span><span>Google Docs</span></div>
+      <div class="tool-card"><span class="tool-icon">GS</span><span>Google Sheets</span></div>
+      <div class="tool-card"><span class="tool-icon">GD</span><span>Google Drive</span></div>
+      <div class="tool-card"><span class="tool-icon">W</span><span>Microsoft Word</span></div>
+      <div class="tool-card"><span class="tool-icon">X</span><span>Microsoft Excel</span></div>
+      <div class="tool-card"><span class="tool-icon">P</span><span>Microsoft PowerPoint</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Project &amp; Task Management</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">TR</span><span>Trello</span></div>
+      <div class="tool-card"><span class="tool-icon">AS</span><span>Asana</span></div>
+      <div class="tool-card"><span class="tool-icon">CL</span><span>ClickUp</span></div>
+      <div class="tool-card"><span class="tool-icon">AT</span><span>Airtable</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Real Estate &amp; Lead Generation Platforms</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">FS</span><span>FreedomSoft</span></div>
+      <div class="tool-card"><span class="tool-icon">PB</span><span>Pebble</span></div>
+      <div class="tool-card"><span class="tool-icon">BT</span><span>BoldTrail</span></div>
+      <div class="tool-card"><span class="tool-icon">LI</span><span>Land id</span></div>
+      <div class="tool-card"><span class="tool-icon">MLS</span><span>MLS — Multiple Listing Service</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Lead Generation &amp; Prospecting</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">AP</span><span>Apollo</span></div>
+      <div class="tool-card"><span class="tool-icon">SA</span><span>Seamless.AI</span></div>
+      <div class="tool-card"><span class="tool-icon">RR</span><span>RocketReach</span></div>
+      <div class="tool-card"><span class="tool-icon">CO</span><span>ContactOut</span></div>
+      <div class="tool-card"><span class="tool-icon">KA</span><span>Kaspr</span></div>
+      <div class="tool-card"><span class="tool-icon">BL</span><span>BatchLeads</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>CRM &amp; Automation</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">GH</span><span>GoHighLevel</span></div>
+      <div class="tool-card"><span class="tool-icon">SF</span><span>Salesforce</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Dialers &amp; Outbound Calling</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">BD</span><span>BatchDialer</span></div>
+      <div class="tool-card"><span class="tool-icon">MD</span><span>Mojo Dialer</span></div>
+      <div class="tool-card"><span class="tool-icon">RM</span><span>ReadyMode</span></div>
+    </div></div>
+
+    <div class="tool-category"><h3>Marketing &amp; Online Platforms</h3><div class="tools-grid">
+      <div class="tool-card"><span class="tool-icon">f</span><span>Facebook</span></div>
+      <div class="tool-card"><span class="tool-icon">FB</span><span>Facebook Business</span></div>
+      <div class="tool-card"><span class="tool-icon">C</span><span>Canva</span></div>
+      <div class="tool-card"><span class="tool-icon">MC</span><span>Mailchimp</span></div>
+      <div class="tool-card"><span class="tool-icon">IG</span><span>Instagram</span></div>
+      <div class="tool-card"><span class="tool-icon">KJ</span><span>Kijiji</span></div>
+      <div class="tool-card"><span class="tool-icon">GB</span><span>Google Business Profile</span></div>
+    </div></div>
+
+    <p class="skills-note">Tools are organized by their primary use in my workflow. Each platform appears only once.</p>
+  </div>
+</section>
+
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header"><p class="eyebrow">What I Provide</p><h2>Services</h2><div class="gold-line"></div><p class="section-sub">Practical support designed around your priorities and workflow.</p></div>
+    <div class="services-grid">
+      <article class="service-card"><div class="service-icon">01</div><h3>Executive & Administrative Support</h3><p>Administrative assistance, calendar management, email management, scheduling, research, and documentation.</p></article>
+      <article class="service-card"><div class="service-icon">02</div><h3>Virtual Assistance</h3><p>Day-to-day business support, data entry, online research, task coordination, and communication support.</p></article>
+      <article class="service-card"><div class="service-icon">03</div><h3>Real Estate Support</h3><p>Lead management, lead follow-up, property research, appointment setting, and CRM support.</p></article>
+      <article class="service-card"><div class="service-icon">04</div><h3>Customer & Sales Support</h3><p>Customer service, lead qualification, inside sales support, appointment setting, and client communication.</p></article>
+      <article class="service-card"><div class="service-icon">05</div><h3>Operations Support</h3><p>Team coordination, task management, workflow support, and administrative operations.</p></article>
+      <article class="service-card"><div class="service-icon">06</div><h3>Document & Workflow Support</h3><p>File organization, document preparation, spreadsheet upkeep, research, and structured task handling.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-header">
+      <p class="eyebrow">Portfolio</p>
       <h2>Sample Work</h2>
       <div class="gold-line"></div>
-      <p class="section-sub">Selected examples of administrative, real estate, communication, research, and organization work.</p>
+      <p class="section-sub">Selected sample projects demonstrating administrative, real estate, communication, research, and organization support.</p>
     </div>
 
     <div class="sample-grid">
       <article class="sample-card">
-        <img src="assets/real-estate-data-entry-sample.png" alt="Real estate leads data entry sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">Data Entry</span><h3>Real Estate Leads — Data Entry</h3><p>Structured lead information with consistent formatting, validation checks, and organized fields.</p></div>
+        <img src="assets/real-estate-data-entry-sample.png" alt="Real estate leads data entry sample">
+        <div class="sample-card-content"><div class="portfolio-tag">Data Entry</div><h3>Real Estate Leads — Data Entry</h3><p>Structured lead information with consistent formatting, validation checks, and organized fields.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/leads-tracker-dashboard.png" alt="Real estate leads tracker dashboard sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">CRM &amp; Reporting</span><h3>Leads Tracker Dashboard</h3><p>Lead pipeline tracking with status summaries, source reporting, follow-up information, and conversion metrics.</p></div>
+        <img src="assets/leads-tracker-dashboard.png" alt="Real estate leads tracker dashboard sample">
+        <div class="sample-card-content"><div class="portfolio-tag">CRM &amp; Reporting</div><h3>Leads Tracker Dashboard</h3><p>Lead pipeline tracking with status summaries, source reporting, follow-up information, and conversion metrics.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/email-management-workflow.png" alt="Email management workflow sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">Email Management</span><h3>Email Management Workflow</h3><p>Inbox organization, labeling, prioritization rules, response templates, and follow-up workflow.</p></div>
+        <img src="assets/email-management-workflow.png" alt="Email management workflow sample">
+        <div class="sample-card-content"><div class="portfolio-tag">Email Management</div><h3>Email Management Workflow</h3><p>Inbox organization, labeling, prioritization rules, response templates, and follow-up workflow.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/calendar-management-sample.png" alt="Calendar management sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">Scheduling</span><h3>Calendar Management</h3><p>Multi-time-zone scheduling, meeting coordination, buffer times, and clear event details.</p></div>
+        <img src="assets/calendar-management-sample.png" alt="Calendar management sample">
+        <div class="sample-card-content"><div class="portfolio-tag">Scheduling</div><h3>Calendar Management</h3><p>Multi-time-zone scheduling, meeting coordination, buffer times, and clear event details.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/internet-research-sample.png" alt="Internet research sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">Research</span><h3>Internet Research</h3><p>Organized research findings with sources, key takeaways, and concise decision-support summaries.</p></div>
+        <img src="assets/internet-research-sample.png" alt="Internet research sample">
+        <div class="sample-card-content"><div class="portfolio-tag">Research</div><h3>Internet Research</h3><p>Organized research findings with sources, key takeaways, and concise decision-support summaries.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/document-formatting-sample.png" alt="Document formatting sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">Document Preparation</span><h3>Document Formatting</h3><p>Professionally formatted reports and letters using consistent styles, headings, spacing, and structure.</p></div>
+        <img src="assets/document-formatting-sample.png" alt="Document formatting sample">
+        <div class="sample-card-content"><div class="portfolio-tag">Document Preparation</div><h3>Document Formatting</h3><p>Professionally formatted reports and letters using consistent styles, headings, spacing, and structure.</p></div>
       </article>
       <article class="sample-card">
-        <img src="assets/file-organization-system.png" alt="File organization system sample" loading="lazy">
-        <div class="sample-card-content"><span class="sample-tag">File Organization</span><h3>File Organization System</h3><p>Logical folder structures and naming conventions designed for quick retrieval and organized shared drives.</p></div>
+        <img src="assets/file-organization-system.png" alt="File organization system sample">
+        <div class="sample-card-content"><div class="portfolio-tag">File Organization</div><h3>File Organization System</h3><p>Logical folder structures and naming conventions designed for quick retrieval and organized shared drives.</p></div>
       </article>
     </div>
+    <p class="portfolio-note">These are sample and practice projects — not client work.</p>
   </div>
 </section>
 
@@ -353,10 +467,10 @@
         <a class="contact-icon" data-tooltip="LinkedIn" aria-label="Open Dee's LinkedIn profile" href="https://www.linkedin.com/in/dzey-p-680904224/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.6h.1c.5-.9 1.7-1.9 3.6-1.9 3.9 0 4.5 2.5 4.5 5.8V21h-4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1V21H9V9Z"/></svg>
         </a>
-        <a class="contact-icon" data-tooltip="Facebook" aria-label="Open Dee's Facebook profile" href="https://www.facebook.com/senyorita1995/" target="_blank" rel="noopener">
+        <a class="contact-icon" data-tooltip="Facebook" aria-label="Open Dee's Facebook profile" href="#" onclick="return false;">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4.5c-.5-.1-1.6-.2-3-.2-3 0-5 1.8-5 5.1V12H6v4h3v8h4v-8h3.4l.6-4H13V9.8c0-1.2.3-1.8 1-1.8Z"/></svg>
         </a>
-        <a class="contact-icon" data-tooltip="Upwork" aria-label="Open Dee's Upwork profile" href="https://www.upwork.com/freelancers/~016bc7bc06edae29a2?mp_source=share" target="_blank" rel="noopener">
+        <a class="contact-icon" data-tooltip="Upwork" aria-label="Open Dee's Upwork profile" href="#" onclick="return false;">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.6 7.2c-1.8 0-3.3 1-4.2 2.6l-.8 1.5c-.7-1.4-1.2-2.9-1.5-4.5H9.7c.3 2.1.9 4 1.8 5.8-1.1 1.2-2.2 1.8-3.3 1.8-1.2 0-2.1-.9-2.1-2.2 0-1.5 1-2.6 2.4-2.6.5 0 1 .1 1.5.4V6.8c-.5-.2-1-.3-1.6-.3C5.5 6.5 3 9 3 12.4 3 15.5 5.1 18 8.1 18c2.1 0 3.9-1.1 5.2-3.1l.7-1.1c1.1 1.8 2.7 3.1 4.6 3.1 2.7 0 4.4-2.1 4.4-4.8 0-2.7-1.8-4.9-4.4-4.9Zm0 7c-1 0-1.8-.7-2.5-1.8l1.1-2c.4-.8.8-1.2 1.4-1.2 1 0 1.7 1 1.7 2.4 0 1.5-.6 2.6-1.7 2.6Z"/></svg>
         </a>
         <a class="contact-icon" data-tooltip="Location" aria-label="View Dee's location" href="https://www.google.com/maps/search/?api=1&query=Roxas+City%2C+Capiz%2C+Philippines" target="_blank" rel="noopener">
