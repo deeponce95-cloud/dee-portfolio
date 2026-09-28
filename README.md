@@ -54,3 +54,6 @@ The portfolio includes these sample-work images:
 - MLS is labeled as Multiple Listing Service.
 - Profile photo is unchanged; only its decorative frame/border/shadow was removed.
 - Sample Work gallery remains included.
+
+
+Sample Work gallery is included in `index.html` and references all seven images in `assets/`.
